@@ -16,27 +16,9 @@
 	<script src="assets/js/main.js"></script>
 	
 	<script>
-		function changeContent(elt) {
-			var z, i, elmnt, file, xhttp;
-            z = document.getElementsByTagName("*");
-            for (i = 0; i < z.length; i++) {
-                elmnt = z[1];
-	            file = elmnt.getAttribute("include-html");
-	            if(file) {
-	                xhttp = new XMLHttpRequest();
-	                xhttp.onreadystatechange = function() {
-	                    if(this.readyState == 4 && this.status == 200) {
-	                        elmnt.innerHTML = this.responseText;
-	                        elmnt.removeAttribute("include-html");
-	                        includeHTML();
-	                	}
-	            	}
-		            xhttp.open("GET", file, true);
-		            xhttp.send();
-		            return;
-            	}
-            }
-		}
+	$(document).ready(function() {
+		$("#container").load("test.html");
+	});
 	</script>
 </head>
 <body class="is-preload">
@@ -54,8 +36,8 @@
 			<nav id="nav">
 				<ul>
 					<li><a href="index.html" id="home"><span class="icon solid fa-home">홈으로</span></a></li>
-					<li><a href="changeContent(this);" id="coupon"><span class="icon solid fa-th">쿠폰</span></a></li>
-					<li><a href="changeContent(this);" id="test"><span class="icon solid fa-user">테스트</span></a></li>
+					<li><a href="javascript:void(0);" id="coupon"><span class="icon solid fa-th">쿠폰</span></a></li>
+					<li><a href="javascript:void(0);" id="test"><span class="icon solid fa-user">테스트</span></a></li>
 				</ul>
 			</nav>
 		</div>
@@ -83,9 +65,7 @@
 		</section>
 		 -->
 		 <div id="container" class="container">
-			 asdasdsa
 		 </div>
-		 <div include-html="test.html"></div>
 	</div>
 
 	<!-- Footer -->
