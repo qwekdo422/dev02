@@ -3,9 +3,7 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
-
-(function($) {
-
+$(document).ready(function() {
 	var	$window = $(window),
 		$body = $('body'),
 		$nav = $('#nav');
@@ -119,5 +117,4 @@
 					target: $body,
 					visibleClass: 'header-visible'
 				});
-
-})(jQuery);
+});
