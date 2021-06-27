@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	$("#header").load("header.html");
 	var	$window = $(window),
 		$body = $('body'),
 		$nav = $('#nav');
@@ -17,17 +18,6 @@ $(document).ready(function() {
 			$body.removeClass('is-preload');
 		}, 100);
 	});
-
-	var urlParams = location.search.split(/[?&]/).slice(1).map(function(paramPair) {
-    	return paramPair.split(/=(.+)?/).slice(0, 2);
-    }).reduce(function(obj, pairArray) {
-        obj[pairArray[0]] = pairArray[1];
-        return obj;
-    }, {});
-	
-	
-	
-	console.log(urlParams);
 	
 	// Toggle.
 	$(
@@ -48,3 +38,11 @@ $(document).ready(function() {
 		visibleClass: 'header-visible'
 	});
 });
+
+function isEmpty(value) {
+     if(value == "" || value == null || value == undefined || ( value != null && typeof value == "object" && !Object.keys(value).length )) {
+         return true;
+     } else {
+         return false;
+     }
+ }
