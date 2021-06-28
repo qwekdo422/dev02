@@ -4,7 +4,7 @@
 	<title>쿠폰</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/common.css" />
+	<link rel="stylesheet" href="assets/css/main.css" />
 	<link href="https://unpkg.com/tabulator-tables@4.1.4/dist/css/tabulator.min.css" rel="stylesheet" />
 	<style>
 		@media screen and (max-width: 736px) {
@@ -16,7 +16,7 @@
 				font-size: 70%;
 			}
 			.container .header input{
-				width: 60%;
+				width: 55%;
 			}
 			.container .header button{
 				width: 20%;
@@ -32,7 +32,7 @@
 				font-size: 100%;
 			}
 			.container .header input{
-				width: 60%;
+				width: 40%;
 			}
 			.container .header button{
 				width: 100px;
@@ -48,7 +48,7 @@
 				font-size: 100%;
 			}
 			.container .header input{
-				width: 60%;
+				width: 40%;
 			}
 			.container .header button{
 				width: 100px;
@@ -59,7 +59,6 @@
 		.container .link {
 			border-bottom: solid;
 		}
-		
 		.tabulator .tabulator-header .tabulator-col {
 		    text-align:center;
 		}
@@ -77,6 +76,12 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/common.js"></script>
+	
+	<script>
+	    function uidChk(target) {
+	    	$(target).val($(target).val().replace(/[^a-z0-9]/gi, ""));
+	    }
+	</script>
 </head>
 <body class="is-preload">
 	<div id="header"></div>
@@ -85,21 +90,21 @@
 		<div class="container">
 			<div class="header">
 				<span>회원번호</span>
-				<input type="text" id="uid" />
+				<input type="text" id="uid" onkeyup="uidChk(this);"/>
 				<button onclick="req();">사용</button>
 			</div>
 			<hr />
 			<a target="_blank" class="link" rel="noopener noreferrer" href="https://forum.netmarble.com/sk2/view/13/746266">회원 번호 확인 법</a>
 			<br /><br />
 			■모바일 쿠폰코드 수정불가
-			<hr />
+			<br />
+			<!-- 
+			<a target="_blank" rel="noopener noreferrer" href=""></a><br>
+			 -->
 			Copyright 2021.
 			<a target="_blank" class="link" rel="noopener noreferrer" href="https://liongs.github.io/">https://liongs.github.io/</a>
 			<hr />
 			
-			<!-- 
-			<a target="_blank" rel="noopener noreferrer" href=""></a><br>
-			 -->
 			
 			<div id="example-table"></div>
 			
@@ -312,5 +317,7 @@
 			<br/>
 		 </div>
 	 </div>
+	 
+	 <div id="footer"></div>
 </body>
 </html>

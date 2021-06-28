@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	$("#header").load("header.html");
+	$("#footer").load("footer.html");
 	var	$window = $(window),
 		$body = $('body'),
 		$nav = $('#nav');
