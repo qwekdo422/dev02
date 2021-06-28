@@ -5,6 +5,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/common.css" />
+	<link href="https://unpkg.com/tabulator-tables@4.1.4/dist/css/tabulator.min.css" rel="stylesheet" />
 	<style>
 		@media screen and (max-width: 736px) {
 			.container .header {
@@ -58,6 +59,18 @@
 		.container .link {
 			border-bottom: solid;
 		}
+		
+		.tabulator .tabulator-header .tabulator-col {
+		    text-align:center;
+		}
+		
+		.tabulator-row .tabulator-cell {
+			padding : 0px;
+		}
+		
+		.tabulator .tabulator-header .tabulator-col .tabulator-col-content {
+			padding : 0px;
+		}
 	</style>
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/browser.min.js"></script>
@@ -77,16 +90,20 @@
 			</div>
 			<hr />
 			<a target="_blank" class="link" rel="noopener noreferrer" href="https://forum.netmarble.com/sk2/view/13/746266">회원 번호 확인 법</a>
+			<br />
+			<hr />
+			Copyright 2021.
+			<a target="_blank" class="link" rel="noopener noreferrer" href="https://liongs.github.io/">https://liongs.github.io/</a>
 			<hr />
 			
 			<!-- 
-			<a target="_blank" rel="noopener noreferrer" href="https://forum.netmarble.com/sk2/view/27/786337">코드 출처 : 마스터냥이</a><br>
+			<a target="_blank" rel="noopener noreferrer" href=""></a><br>
 			 -->
 			
 			<div id="example-table"></div>
 			
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-			<link href="https://unpkg.com/tabulator-tables@4.1.4/dist/css/tabulator.min.css" rel="stylesheet">
+			
 			<script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.1.4/dist/js/tabulator.min.js"></script>
 	
 			<script>
@@ -111,13 +128,13 @@
 			        }
 			      }
 			
-			      return null
+			      return null;
 			    }
 			
 			    let uid = getCookie('uid')
 			
 			    if(uid){$('#uid').val(uid)}
-			
+			    
 			    var tabledata = [
 			        {id: 1, code: "KINGADEL", result: 0, response: '', description: '요청 전'},
 			        {id: 2, code: "DANJANGNIMLUV", result: 0, response: '', description: '요청 전'},
@@ -238,28 +255,34 @@
 			                },
 			                success: function (data) {
 			                    if (data['resultCode'] === 'SUCCESS') {
-			                        tabledata[i]['result'] = 1
-			                        tabledata[i]['description'] = data['rewardItem']['rewardTitle']
+			                        tabledata[i]['result'] = 1;
+			                        tabledata[i]['description'] = data['rewardItem']['rewardTitle'];
 			                    } else if (data['resultCode'] === 'NOT_EXISTS_PID') {
-			                        tabledata[i]['description'] = '회원번호 오류'
+			                        tabledata[i]['description'] = '회원번호 오류';
 			                    } else if (data['resultCode'] === 'COUPON_ALREADY_USE') {
-			                        tabledata[i]['description'] = '이미 사용한 쿠폰'
+			                        tabledata[i]['description'] = '이미 사용한 쿠폰';
 			                    } else if (data['resultCode'] === 'COUPON_WRONG') {
-			                        tabledata[i]['description'] = '잘못된 쿠폰 코드'
+			                        tabledata[i]['description'] = '잘못된 쿠폰 코드';
 			                    } else {
-			                        tabledata[i]['description'] = '나도 모르는 응답코드'
+			                        tabledata[i]['description'] = '나도 모르는 응답코드';
 			                    }
-			                    tabledata[i]['response'] = data['resultCode']
-			                    table.updateData(tabledata)
+			                    tabledata[i]['response'] = data['resultCode'];
+			                    table.updateData(tabledata);
 			                }
-			            })
+			            });
 			        }
 			    }
 			
+				var table = new Tabulator("#example-table", {
+				    data:tabledata, //assign data to table
+				    autoColumns:true, //create columns from data field names
+				});
+			    
 			    var table = new Tabulator("#example-table", {
 			        data: tabledata,           //load row data from array
 			        reactiveData: true,
-			        layout: "fitDataFill",      //fit columns to width of table
+			        //layout: "fitDataFill",      //fit columns to width of table
+			        layout:"fitColumns",      //fit columns to width of table
 			        responsiveLayout: "hide",  //hide columns that dont fit on the table
 			        tooltips: true,            //show tool tips on cells
 			        addRowPos: "top",          //when adding a new row, add it to the top of the table
@@ -267,22 +290,25 @@
 			        movableColumns: true,      //allow column order to be changed
 			        resizableRows: true,       //allow row order to be changed
 			        columns: [                 //define the table columns
-			            {title: "No", field: "id", width: 70, editor: false},
-			            {title: "Code", field: "code", width: 300, editor: "input"},
+			            {title: "No", field: "id", width: 55, align:"center", editor: false, headerSort:false},
+			            {title: "쿠폰", field: "code",/*  width: 300, */ editor: "input", headerSort:false},
 			            {
-			                title: "status",
+			                title: "결과",
 			                field: "result",
-			                width: 90,
-			                hozAlign: "center",
+			                width: 65,
+			                align:"center",
 			                formatter: "tickCross",
 			                sorter: "boolean",
-			                editor: false
+			                editor: false,
+			                headerSort:false
 			            },
-			            {title: "response", field: "response", width: 180, editor: false},
-			            {title: "설명", field: "description", width: 300, editor: false},
+			            {title: "응답", field: "response", /* width: 180, */ editor: false, headerSort:false},
+			            {title: "설명", field: "description",  /* width: 100%, */  editor: false, headerSort:false},
 			        ],
 			    });
 			</script>
+			
+			<br/>
 		 </div>
 	 </div>
 </body>

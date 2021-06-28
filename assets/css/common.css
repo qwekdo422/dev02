@@ -7,7 +7,7 @@ pre, a, abbr, acronym, address, big, cite,
 code, del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var, b,
 u, i, center, dl, dt, dd, ol, ul, li, fieldset,
-form, label, legend, table, caption, tbody,
+form, label, legend, caption, tbody,
 tfoot, thead, tr, th, td, article, aside,
 canvas, details, embed, figure, figcaption,
 footer, header, hgroup, menu, nav, output, ruby,
@@ -40,10 +40,6 @@ blockquote:before, blockquote:after, q:before, q:after {
 	content: none;
 }
 
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
 
 body {
 	-webkit-text-size-adjust: none;
@@ -196,7 +192,7 @@ blockquote {
 	font-style: italic;
 }
 
-p, ul, ol, dl, table {
+p, ul, ol, dl {
 	margin-bottom: 2em;
 }
 
@@ -1885,36 +1881,7 @@ form ::-moz-focus-inner {
 	border: 0;
 }
 
-/* Table */
 
-table {
-	width: 100%;
-	text-align: left;
-}
-
-table tbody tr:nth-child(2n+2) {
-	background: #f4f4f4;
-}
-
-table td {
-	padding: 0.5em 1em 0.5em 1em;
-}
-
-table th {
-	text-align: left;
-	padding: 0.5em 1em 0.5em 1em;
-	color: #fff;
-	background: #222729 url("images/overlay.png");
-}
-
-table thead {
-	background: #444;
-	color: #fff;
-}
-
-table tfoot {
-	background: #eee;
-}
 
 /* Button */
 
