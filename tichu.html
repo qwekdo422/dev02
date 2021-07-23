@@ -125,7 +125,7 @@
     </tr>
   </thead>
   <tbody>
-    <!-- Á¸ÀçÇÏ´Â µ¥ÀÌÅÍ´Â ¼±ÅÃÀûÀ¸·Î ¿©±â¿¡ Æ÷ÇÔµË´Ï´Ù -->
+    <!-- ì¡´ì¬í•˜ëŠ” ë°ì´í„°ëŠ” ì„ íƒì ìœ¼ë¡œ ì—¬ê¸°ì— í¬í•¨ë©ë‹ˆë‹¤ -->
   </tbody>
 </table>
 
@@ -136,17 +136,17 @@
 <div>
 	<input type="text" id="in" style="width: 200px;"></input>
 	<div class="mtop5">
-		<input type="button" class="mode" value="½Ì±Û" data-no=1></input>
-		<input type="button" class="mode" value="¿¬¼ÓÆä¾î" data-no=2></input>
-		<input type="button" class="mode" value="Æ®¸®ÇÃ" data-no=3></input>
+		<input type="button" class="mode" value="ì‹±ê¸€" data-no=1></input>
+		<input type="button" class="mode" value="ì—°ì†í˜ì–´" data-no=2></input>
+		<input type="button" class="mode" value="íŠ¸ë¦¬í”Œ" data-no=3></input>
 	</div>
 	<div class="mtop5">
-		<input type="button" class="mode" value="ÆøÅº" data-no=4></input>
-		<input type="button" class="mode" value="Ç®ÇÏ¿ì½º" data-no=5></input>
-		<input type="button" class="mode" value="½ºÆ®·¹ÀÌÆ®" data-no=6></input>
+		<input type="button" class="mode" value="í­íƒ„" data-no=4></input>
+		<input type="button" class="mode" value="í’€í•˜ìš°ìŠ¤" data-no=5></input>
+		<input type="button" class="mode" value="ìŠ¤íŠ¸ë ˆì´íŠ¸" data-no=6></input>
 	</div>
 	<div class="mtop5">
-		<span id="msg">½Ì±Û mode</span>
+		<span id="msg">ì‹±ê¸€ mode</span>
 	</div>
 </div>
 
@@ -155,22 +155,22 @@
 
 $("#in").keydown(function (key) {
  
-   if (key.keyCode == 13){//Å°°¡ 13ÀÌ¸é ½ÇÇà (¿£ÅÍ´Â 13)
+   if (key.keyCode == 13){//í‚¤ê°€ 13ì´ë©´ ì‹¤í–‰ (ì—”í„°ëŠ” 13)
       var v = $(this).val();
       
-      if (v == "¤Ã" || v == "j" || v == "J") {
+      if (v == "ã…“" || v == "j" || v == "J") {
          v = 11;
       }
       
-      else if (v == "¤²" || v == "q" || v == "Q") {
+      else if (v == "ã…‚" || v == "q" || v == "Q") {
          v = 12;
       }
       
-      else if (v == "¤¿" || v == "k" || v == "K") {
+      else if (v == "ã…" || v == "k" || v == "K") {
          v = 13;
       }
       
-      else if (v == "¤±" || v == "a" || v == "A") {
+      else if (v == "ã…" || v == "a" || v == "A") {
          v = 14;
       }
       
@@ -182,12 +182,12 @@ $("#in").keydown(function (key) {
 
 });
 
-var mode = 1;	// 1:½Ì±Û, 2:¿¬¼ÓÆä¾î, 3:Æ®¸®ÇÃ, 4:ÆøÅº, 5:Ç®ÇÏ¿ì½º, 6:½ºÆ®·¹ÀÌÆ®
-var stat = 1; 	// 1:½ÃÀÛ, 2:Á¾·á
-var start = ""; // ½ÃÀÛ ta-td ¾ÆÀÌµğ
-var end = "";	// Á¾·á ta-td ¾ÆÀÌµğ
+var mode = 1;	// 1:ì‹±ê¸€, 2:ì—°ì†í˜ì–´, 3:íŠ¸ë¦¬í”Œ, 4:í­íƒ„, 5:í’€í•˜ìš°ìŠ¤, 6:ìŠ¤íŠ¸ë ˆì´íŠ¸
+var stat = 1; 	// 1:ì‹œì‘, 2:ì¢…ë£Œ
+var start = ""; // ì‹œì‘ ta-td ì•„ì´ë””
+var end = "";	// ì¢…ë£Œ ta-td ì•„ì´ë””
 $(document).ready(function(){
-	// »©±â
+	// ë¹¼ê¸°
 	$("#ta .ta-head").on("click", function(){
 		var elt = $(this).siblings(".ta-td");
 		if( mode == 1 ) 
@@ -215,11 +215,11 @@ $(document).ready(function(){
 			statFunc(elt);
 		}
 	});
-	// ´õÇÏ±â
+	// ë”í•˜ê¸°
 	$("#ta .ta-plus").on("click", function(){
 		plusAndMinus($(this).siblings(".ta-td"), "plus");
 	});
-	// mode Å¬¸¯
+	// mode í´ë¦­
 	$(".mode").on("click", function(){
 		resetMode();
 		mode = $(this).attr("data-no");
@@ -227,11 +227,11 @@ $(document).ready(function(){
 		{
 			if( mode==5 )
 			{
-				$("#msg").text($(this).val()+" mode : 2°³Â¥¸® Ä«µå ÇÑ¹ø¸¸ Å¬¸¯ÇØ ½Ã¹Ù·Ò¾Æ!");
+				$("#msg").text($(this).val()+" mode : 2ê°œì§œë¦¬ ì¹´ë“œ í•œë²ˆë§Œ í´ë¦­í•´ ì‹œë°”ë¡¬ì•„!");
 			}
 			else
 			{
-				$("#msg").text($(this).val()+" mode : ½ÃÀÛÄ«µå Å¬¸¯ÇØ ½Ã¹Ù·Ò¾Æ!");
+				$("#msg").text($(this).val()+" mode : ì‹œì‘ì¹´ë“œ í´ë¦­í•´ ì‹œë°”ë¡¬ì•„!");
 			}
 		}
 		else
@@ -274,15 +274,15 @@ function statFunc(elt)
 		$("#msg").css("color", "blue");
 		if( mode == 2 )
 		{
-			$("#msg").text("¿¬¼ÓÆä¾î mode : Á¾·áÄ«µå Å¬¸¯ÇØ ½Ã¹Ù·Ò¾Æ!");
+			$("#msg").text("ì—°ì†í˜ì–´ mode : ì¢…ë£Œì¹´ë“œ í´ë¦­í•´ ì‹œë°”ë¡¬ì•„!");
 		}
 		else if( mode == 5 )
 		{
-			$("#msg").text("Ç®ÇÏ¿ì½º mode : 3°³Â¥¸® Ä«µå ÇÑ¹ø´õ Å¬¸¯ÇØ ½Ã¹Ù·Ò¾Æ!");
+			$("#msg").text("í’€í•˜ìš°ìŠ¤ mode : 3ê°œì§œë¦¬ ì¹´ë“œ í•œë²ˆë” í´ë¦­í•´ ì‹œë°”ë¡¬ì•„!");
 		}
 		else if( mode == 6 )
 		{
-			$("#msg").text("½ºÆ®·¹ÀÌÆ® mode : Á¾·áÄ«µå Å¬¸¯ÇØ ½Ã¹Ù·Ò¾Æ!");
+			$("#msg").text("ìŠ¤íŠ¸ë ˆì´íŠ¸ mode : ì¢…ë£Œì¹´ë“œ í´ë¦­í•´ ì‹œë°”ë¡¬ì•„!");
 		}
 	}
 	else if( stat == 2 )
@@ -358,6 +358,6 @@ function resetMode()
 	start = "";
 	end = "";
 	$("#msg").css("color", "red");
-	$("#msg").text("½Ì±Û mode");
+	$("#msg").text("ì‹±ê¸€ mode");
 }
 </script>
